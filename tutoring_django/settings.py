@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
+import sqlite3
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,6 +25,8 @@ SECRET_KEY = "django-insecure-ah#v6m=x3h0arxal^1hfj5b7#*s=gwu@3s+-dhw_ot)*#3(re)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+# sqlite3.enable_callback_tracebacks(True)
 
 ALLOWED_HOSTS = []
 

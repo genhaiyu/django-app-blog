@@ -42,7 +42,7 @@ def login_user(request):
 
 
 # Logout
-def logoutuser(request):
+def logout_user(request):
     logout(request)
     return redirect('/')
 
