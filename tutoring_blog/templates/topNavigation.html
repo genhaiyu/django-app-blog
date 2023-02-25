@@ -54,8 +54,19 @@
                         {% endif %}
                         <li class="nav-item me-3 me-lg-0">
                             <a class="nav-link" href="{% url 'profile' %}">
-                                <span class="me-1"><img src="{{ user.profile.avatar.url }}" alt="User Avatar"
-                                                        id="user-avatar" class="img-thumbnail rounded-circle"></span>Howdy, {{ user.first_name }} {{ user.last_name }}
+
+                                {% if user.profile.avatar|length > 1 %}
+                                    <span class="me-1"><img src="{{ user.profile.avatar.url }}" alt="User Avatar"
+                                                            id="user-avatar"
+                                                            class="img-thumbnail rounded-circle"></span>
+                                    Hello, {{ user.first_name }} {{ user.last_name }}
+
+                                {% else %}
+                                    <span class="me-1"><img src="" alt=""
+                                                            id="user-avatar"
+                                                            class="img-thumbnail rounded-circle"></span>
+                                    Hello, {{ user.first_name }} {{ user.last_name }}
+                                {% endif %}
                             </a>
                             <!-- <a class="nav-link" href="{% url 'logout' %}">Logout</a> -->
                         </li>
