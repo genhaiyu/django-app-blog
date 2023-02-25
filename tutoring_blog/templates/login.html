@@ -45,12 +45,12 @@
         $(function () {
             $('#login-user').submit(function (e) {
                 e.preventDefault();
-                var _this = $(this)
+                const _this = $(this);
                 $('.err-msg').remove();
-                var el = $('<div>')
+                const el = $('<div>');
                 el.addClass("alert alert-danger err-msg")
                 el.hide()
-                if (_this[0].checkValidity() == false) {
+                if (_this[0].checkValidity() === false) {
                     _this[0].reportValidity();
                     return false;
                 }
@@ -73,10 +73,10 @@
                         end_loader();
                     },
                     success: function (resp) {
-                        if (typeof resp == 'object' && resp.status == 'success') {
+                        if (typeof resp == 'object' && resp.status === 'success') {
                             el.removeClass("alert alert-danger err-msg")
                             location.href = "{% url 'home-page' %}"
-                        } else if (resp.status == 'failed' && !!resp.msg) {
+                        } else if (resp.status === 'failed' && !!resp.msg) {
                             el.text(resp.msg)
                         } else {
                             el.text("An error occured", 'error');

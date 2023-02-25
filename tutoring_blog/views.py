@@ -31,11 +31,8 @@ def login_user(request):
 
         user = authenticate(username=username, password=password)
         if user is not None:
-            if user.is_active:
-                login(request, user)
-                resp['status'] = 'success'
-            else:
-                resp['msg'] = "Incorrect username or password"
+            login(request, user)
+            resp['status'] = 'success'
         else:
             resp['msg'] = "Incorrect username or password"
     return HttpResponse(json.dumps(resp), content_type='application/json')
