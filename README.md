@@ -7,6 +7,10 @@
 
 The project dedicated private tutoring for my student, it from online open-source projects.
 
+
+<img src="./chart/basic-django.png" alt="chart">
+
+
 ## Issues
 
 
