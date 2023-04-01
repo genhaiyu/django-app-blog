@@ -161,7 +161,7 @@ def category_mgt(request):
 @login_required
 def manage_category(request, pk=None):
     # category = Category.objects.all()
-    if pk == None:
+    if pk is None:
         category = {}
     elif pk > 0:
         category = Category.objects.filter(id=pk).first()
@@ -180,7 +180,7 @@ def save_category(request):
         category = None
         if not request.POST['id'] == '':
             category = Category.objects.filter(id=request.POST['id']).first()
-        if not category == None:
+        if category is not None:
             form = SaveCategory(request.POST, instance=category)
         else:
             form = SaveCategory(request.POST)
@@ -192,7 +192,7 @@ def save_category(request):
         for field in form:
             for error in field.errors:
                 resp['msg'] += str(error + '<br>')
-        if not category == None:
+        if category is not None:
             form = SaveCategory(instance=category)
 
     return HttpResponse(json.dumps(resp), content_type="application/json")
@@ -229,7 +229,7 @@ def post_mgt(request):
 @login_required
 def manage_post(request, pk=None):
     # post = post.objects.all()
-    if pk == None:
+    if pk is None:
         post = {}
     elif pk > 0:
         post = Post.objects.filter(id=pk).first()
@@ -248,7 +248,7 @@ def save_post(request):
         post = None
         if not request.POST['id'] == '':
             post = Post.objects.filter(id=request.POST['id']).first()
-        if not post == None:
+        if post is not None:
             form = SavePost(request.POST, request.FILES, instance=post)
         else:
             form = SavePost(request.POST, request.FILES)
@@ -260,7 +260,7 @@ def save_post(request):
         for field in form:
             for error in field.errors:
                 resp['msg'] += str(error + '<br>')
-        if not post == None:
+        if post is not None:
             form = SavePost(instance=post)
 
     return HttpResponse(json.dumps(resp), content_type="application/json")

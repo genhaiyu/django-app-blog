@@ -28,7 +28,7 @@ def save_user_profile(sender, instance, **kwargs):
     print(instance)
     try:
         profile = UserProfile.objects.get(user=instance)
-    except Exception as e:
+    except RuntimeError as e:
         UserProfile.objects.create(user=instance)
     instance.profile.save()
 

@@ -18,7 +18,7 @@ class UserRegistration(UserCreationForm):
         email = self.cleaned_data['email']
         try:
             user = User.objects.get(email=email)
-        except Exception as e:
+        except RuntimeError as e:
             return email
         raise forms.ValidationError(f"The {user.email} mail is already exists/taken")
 
@@ -26,7 +26,7 @@ class UserRegistration(UserCreationForm):
         username = self.cleaned_data['username']
         try:
             user = User.objects.get(username=username)
-        except Exception as e:
+        except RuntimeError as e:
             return username
         raise forms.ValidationError(f"The {user.username} mail is already exists/taken")
 
@@ -50,7 +50,7 @@ class UpdateProfile(forms.ModelForm):
         email = self.cleaned_data['email']
         try:
             user = User.objects.exclude(id=self.cleaned_data['id']).get(email=email)
-        except Exception as e:
+        except RuntimeError as e:
             return email
         raise forms.ValidationError(f"The {user.email} mail is already exists/taken")
 
@@ -58,7 +58,7 @@ class UpdateProfile(forms.ModelForm):
         username = self.cleaned_data['username']
         try:
             user = User.objects.exclude(id=self.cleaned_data['id']).get(username=username)
-        except Exception as e:
+        except RuntimeError as e:
             return username
         raise forms.ValidationError(f"The {user.username} mail is already exists/taken")
 
@@ -117,7 +117,7 @@ class SaveCategory(forms.ModelForm):
                 category = Category.objects.exclude(id=id).get(name=name)
             else:
                 category = Category.objects.get(name=name)
-        except Exception as e:
+        except RuntimeError as e:
             if name == '':
                 raise forms.ValidationError(f"Category field is required.")
             else:
@@ -141,18 +141,18 @@ class SavePost(forms.ModelForm):
         fields = ('category', 'author', 'title', 'blog_post', 'status', 'banner')
 
     def clean_category(self):
-        catId = self.cleaned_data['category']
+        cat_id = self.cleaned_data['category']
         # raise forms.ValidationError(f"Invalid Category Value.")
         try:
-            category = Category.objects.get(id=catId)
+            category = Category.objects.get(id=cat_id)
             return category
-        except:
+        except RuntimeError:
             raise forms.ValidationError(f"Invalid Category Value.")
 
     def clean_author(self):
-        userId = self.cleaned_data['author']
+        user_id = self.cleaned_data['author']
         try:
-            author = User.objects.get(id=userId)
+            author = User.objects.get(id=user_id)
             return author
-        except:
+        except RuntimeError:
             raise forms.ValidationError(f"Invalid User Value.")
