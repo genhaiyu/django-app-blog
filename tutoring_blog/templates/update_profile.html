@@ -32,6 +32,22 @@
                                                        value="{{ userProfile.dob|date:'Y-m-d' }}" required="required">
                                             </div>
                                             <div class="form-group mb-3">
+                                                <label for="user_type" class="control-label">Grant</label>
+                                                <select name="user_type" id="user_type" class="form-select rounded-0" required>
+                                                    {% if userProfile.user_type == 1 %}
+                                                        <option value="1" selected>Active</option>
+                                                    {% else %}
+                                                        <option value="1">Active</option>
+                                                    {% endif %}
+
+                                                    {% if userProfile.user_type == 2 %}
+                                                        <option value="2" selected>Inactive</option>
+                                                    {% else %}
+                                                        <option value="2">Inactive</option>
+                                                    {% endif %}
+                                                </select>
+                                            </div>
+                                            <div class="form-group mb-3">
                                                 <label for="contact" class="control-label">Contact</label>
                                                 <input type="text" class="form-control rounded-0" name="contact"
                                                        id="contact" value="{{ userProfile.contact }}"

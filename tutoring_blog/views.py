@@ -7,8 +7,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from tutoring_blog.forms import UserRegistration, AddAvatar, UpdateProfile, UpdateProfileMeta, UpdateProfileAvatar, \
-    SaveCategory, SavePost
+from tutoring_blog.forms import UserRegistration, AddAvatar, UpdateProfile, UpdateProfileMeta, UpdateProfileAvatar, SaveCategory, SavePost
 from tutoring_blog.models import Category, Post, UserProfile
 
 category_list = Category.objects.exclude(status=2).all()
@@ -134,7 +133,7 @@ def update_avatar(request):
             context['img'] = ''
         else:
             context['img'] = img
-    except Exception:
+    except RuntimeError:
         pass
 
     if request.method == 'POST':
